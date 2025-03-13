@@ -51,24 +51,24 @@ static inline void reset_state(Scanner *scanner) {
   scanner->level_count = 0;
 }
 
-void *tree_sitter_lua_external_scanner_create() {
+void *tree_sitter_scenery_external_scanner_create() {
   Scanner *scanner = ts_calloc(1, sizeof(Scanner));
   return scanner;
 }
 
-void tree_sitter_lua_external_scanner_destroy(void *payload) {
+void tree_sitter_scenery_external_scanner_destroy(void *payload) {
   Scanner *scanner = (Scanner *)payload;
   ts_free(scanner);
 }
 
-unsigned tree_sitter_lua_external_scanner_serialize(void *payload, char *buffer) {
+unsigned tree_sitter_scenery_external_scanner_serialize(void *payload, char *buffer) {
   Scanner *scanner = (Scanner *)payload;
   buffer[0] = scanner->ending_char;
   buffer[1] = (char)scanner->level_count;
   return 2;
 }
 
-void tree_sitter_lua_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
+void tree_sitter_scenery_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
   Scanner *scanner = (Scanner *)payload;
   if (length == 0) return;
   scanner->ending_char = buffer[0];
@@ -118,7 +118,7 @@ static bool scan_block_content(Scanner *scanner, TSLexer *lexer) {
 }
 
 static bool scan_comment_start(Scanner *scanner, TSLexer *lexer) {
-  if (consume_char('-', lexer) && consume_char('-', lexer)) {
+  if (consume_char('/', lexer) && consume_char('/', lexer)) {
     lexer->mark_end(lexer);
 
     if (scan_block_start(scanner, lexer)) {
@@ -154,7 +154,7 @@ static bool scan_comment_content(Scanner *scanner, TSLexer *lexer) {
   return false;
 }
 
-bool tree_sitter_lua_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+bool tree_sitter_scenery_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   Scanner *scanner = (Scanner *)payload;
 
   if (valid_symbols[BLOCK_STRING_END] && scan_block_end(scanner, lexer)) {

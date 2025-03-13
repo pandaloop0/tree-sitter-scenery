@@ -1,12 +1,13 @@
 {
-  "name": "@tree-sitter-grammars/tree-sitter-lua",
-  "version": "0.3.0",
-  "description": "Lua grammar for tree-sitter",
-  "repository": "github:tree-sitter-grammars/tree-sitter-lua",
+  "name": "tree-sitter-scenery",
+  "version": "0.1.0",
+  "description": "Scenery lua",
+  "repository": "https://github.com/pandaloop0/tree-sitter-scenery",
   "license": "MIT",
   "author": {
-    "name": "Munif Tanjim",
-    "url": "https://muniftanjim.dev"
+    "name": "Pandaloop",
+    "email": "hassan@pandaloop.de",
+    "url": "https://pandaloop.de/"
   },
   "main": "bindings/node",
   "types": "bindings/node",
@@ -14,10 +15,11 @@
     "incremental",
     "parsing",
     "tree-sitter",
-    "lua"
+    "scenery"
   ],
   "files": [
     "grammar.js",
+    "tree-sitter.json",
     "binding.gyp",
     "prebuilds/**",
     "bindings/node/*",
@@ -26,12 +28,12 @@
     "*.wasm"
   ],
   "dependencies": {
-    "node-addon-api": "^8.1.0",
+    "node-addon-api": "^8.2.1",
     "node-gyp-build": "^4.8.2"
   },
   "devDependencies": {
     "prebuildify": "^6.0.1",
-    "tree-sitter-cli": "^0.24.3"
+    "tree-sitter-cli": "^0.24.6"
   },
   "peerDependencies": {
     "tree-sitter": "^0.21.1"

@@ -1,6 +1,6 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-  "name": "lua",
+  "name": "scenery",
   "word": "identifier",
   "rules": {
     "chunk": {
@@ -146,7 +146,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "return"
+          "value": "retfn"
         },
         {
           "type": "CHOICE",
@@ -318,6 +318,10 @@
           "value": "do"
         },
         {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
           "type": "FIELD",
           "name": "body",
           "content": {
@@ -340,7 +344,7 @@
         },
         {
           "type": "STRING",
-          "value": "end"
+          "value": "}"
         }
       ]
     },
@@ -361,7 +365,7 @@
         },
         {
           "type": "STRING",
-          "value": "do"
+          "value": "{"
         },
         {
           "type": "FIELD",
@@ -386,7 +390,7 @@
         },
         {
           "type": "STRING",
-          "value": "end"
+          "value": "}"
         }
       ]
     },
@@ -398,6 +402,10 @@
           "value": "repeat"
         },
         {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
           "type": "FIELD",
           "name": "body",
           "content": {
@@ -417,6 +425,10 @@
             "named": true,
             "value": "block"
           }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         },
         {
           "type": "STRING",
@@ -449,7 +461,7 @@
         },
         {
           "type": "STRING",
-          "value": "then"
+          "value": "{"
         },
         {
           "type": "FIELD",
@@ -501,7 +513,7 @@
         },
         {
           "type": "STRING",
-          "value": "end"
+          "value": "}"
         }
       ]
     },
@@ -510,7 +522,11 @@
       "members": [
         {
           "type": "STRING",
-          "value": "elseif"
+          "value": "else"
+        },
+        {
+          "type": "STRING",
+          "value": "if"
         },
         {
           "type": "FIELD",
@@ -522,7 +538,7 @@
         },
         {
           "type": "STRING",
-          "value": "then"
+          "value": "{"
         },
         {
           "type": "FIELD",
@@ -553,6 +569,10 @@
         {
           "type": "STRING",
           "value": "else"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
         },
         {
           "type": "FIELD",
@@ -603,7 +623,7 @@
         },
         {
           "type": "STRING",
-          "value": "do"
+          "value": "{"
         },
         {
           "type": "FIELD",
@@ -628,7 +648,7 @@
         },
         {
           "type": "STRING",
-          "value": "end"
+          "value": "}"
         }
       ]
     },
@@ -639,23 +659,23 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_name_list"
+            "name": "_expression_list"
           },
           "named": true,
-          "value": "variable_list"
+          "value": "expression_list"
         },
         {
           "type": "STRING",
-          "value": "in"
+          "value": "=>"
         },
         {
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_expression_list"
+            "name": "_name_list"
           },
           "named": true,
-          "value": "expression_list"
+          "value": "variable_list"
         }
       ]
     },
@@ -663,16 +683,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
-        },
-        {
           "type": "STRING",
-          "value": "="
+          "value": "<"
         },
         {
           "type": "FIELD",
@@ -702,7 +714,7 @@
               "members": [
                 {
                   "type": "STRING",
-                  "value": ","
+                  "value": ";"
                 },
                 {
                   "type": "FIELD",
@@ -718,6 +730,22 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": "=>"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ">"
         }
       ]
     },
@@ -756,7 +784,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "function"
+          "value": "fn"
         },
         {
           "type": "FIELD",
@@ -777,11 +805,11 @@
       "members": [
         {
           "type": "STRING",
-          "value": "local"
+          "value": "let"
         },
         {
           "type": "STRING",
-          "value": "function"
+          "value": "fn"
         },
         {
           "type": "FIELD",
@@ -888,7 +916,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "local"
+          "value": "let"
         },
         {
           "type": "CHOICE",
@@ -1161,7 +1189,7 @@
     },
     "nil": {
       "type": "STRING",
-      "value": "nil"
+      "value": "NONE"
     },
     "false": {
       "type": "STRING",
@@ -1799,7 +1827,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "function"
+          "value": "fn"
         },
         {
           "type": "SYMBOL",
@@ -1817,6 +1845,10 @@
             "type": "SYMBOL",
             "name": "parameters"
           }
+        },
+        {
+          "type": "STRING",
+          "value": "{"
         },
         {
           "type": "FIELD",
@@ -1841,7 +1873,7 @@
         },
         {
           "type": "STRING",
-          "value": "end"
+          "value": "}"
         }
       ]
     },
@@ -2136,10 +2168,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "table_constructor"
-        },
-        {
-          "type": "SYMBOL",
           "name": "string"
         }
       ]
@@ -2244,6 +2272,10 @@
           "members": [
             {
               "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "STRING",
               "value": "["
             },
             {
@@ -2275,6 +2307,10 @@
         {
           "type": "SEQ",
           "members": [
+            {
+              "type": "STRING",
+              "value": "."
+            },
             {
               "type": "FIELD",
               "name": "name",
@@ -2326,7 +2362,7 @@
               },
               {
                 "type": "STRING",
-                "value": "or"
+                "value": "||"
               },
               {
                 "type": "FIELD",
@@ -2355,7 +2391,7 @@
               },
               {
                 "type": "STRING",
-                "value": "and"
+                "value": "&&"
               },
               {
                 "type": "FIELD",
@@ -2471,7 +2507,7 @@
               },
               {
                 "type": "STRING",
-                "value": "~="
+                "value": "!="
               },
               {
                 "type": "FIELD",
@@ -2932,7 +2968,7 @@
             "members": [
               {
                 "type": "STRING",
-                "value": "not"
+                "value": "!"
               },
               {
                 "type": "STRING",
@@ -2986,7 +3022,7 @@
               "name": "start",
               "content": {
                 "type": "STRING",
-                "value": "--"
+                "value": "//"
               }
             },
             {

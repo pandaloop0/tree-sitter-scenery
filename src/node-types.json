@@ -324,7 +324,7 @@
         "required": true,
         "types": [
           {
-            "type": "--",
+            "type": "//",
             "named": false
           },
           {
@@ -1047,6 +1047,14 @@
     }
   },
   {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "!=",
+    "named": false
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -1060,6 +1068,10 @@
   },
   {
     "type": "&",
+    "named": false
+  },
+  {
+    "type": "&&",
     "named": false
   },
   {
@@ -1088,10 +1100,6 @@
   },
   {
     "type": "-",
-    "named": false
-  },
-  {
-    "type": "--",
     "named": false
   },
   {
@@ -1143,6 +1151,10 @@
     "named": false
   },
   {
+    "type": "=>",
+    "named": false
+  },
+  {
     "type": ">",
     "named": false
   },
@@ -1175,10 +1187,6 @@
     "named": false
   },
   {
-    "type": "and",
-    "named": false
-  },
-  {
     "type": "break_statement",
     "named": true
   },
@@ -1195,14 +1203,6 @@
     "named": false
   },
   {
-    "type": "elseif",
-    "named": false
-  },
-  {
-    "type": "end",
-    "named": false
-  },
-  {
     "type": "escape_sequence",
     "named": true
   },
@@ -1211,11 +1211,11 @@
     "named": true
   },
   {
-    "type": "for",
+    "type": "fn",
     "named": false
   },
   {
-    "type": "function",
+    "type": "for",
     "named": false
   },
   {
@@ -1235,11 +1235,7 @@
     "named": false
   },
   {
-    "type": "in",
-    "named": false
-  },
-  {
-    "type": "local",
+    "type": "let",
     "named": false
   },
   {
@@ -1247,27 +1243,15 @@
     "named": true
   },
   {
-    "type": "not",
-    "named": false
-  },
-  {
     "type": "number",
     "named": true
-  },
-  {
-    "type": "or",
-    "named": false
   },
   {
     "type": "repeat",
     "named": false
   },
   {
-    "type": "return",
-    "named": false
-  },
-  {
-    "type": "then",
+    "type": "retfn",
     "named": false
   },
   {
@@ -1295,15 +1279,15 @@
     "named": false
   },
   {
+    "type": "||",
+    "named": false
+  },
+  {
     "type": "}",
     "named": false
   },
   {
     "type": "~",
-    "named": false
-  },
-  {
-    "type": "~=",
     "named": false
   }
 ]

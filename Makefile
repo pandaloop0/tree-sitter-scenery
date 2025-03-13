@@ -2,9 +2,9 @@ ifeq ($(OS),Windows_NT)
 $(error Windows is not supported)
 endif
 
-LANGUAGE_NAME := tree-sitter-lua
-HOMEPAGE_URL := https://github.com/tree-sitter-grammars/tree-sitter-lua
-VERSION := 0.3.0
+LANGUAGE_NAME := tree-sitter-scenery
+HOMEPAGE_URL := https://github.com/pandaloop0/tree-sitter-scenery
+VERSION := 0.1.0
 
 # repository
 SRC_DIR := src

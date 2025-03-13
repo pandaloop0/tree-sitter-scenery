@@ -2,21 +2,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "TreeSitterLua",
+    name: "TreeSitterScenery",
     products: [
-        .library(name: "TreeSitterLua", targets: ["TreeSitterLua"]),
+        .library(name: "TreeSitterScenery", targets: ["TreeSitterScenery"]),
     ],
     dependencies: [
         .package(url: "https://github.com/ChimeHQ/SwiftTreeSitter", from: "0.8.0"),
     ],
     targets: [
         .target(
-            name: "TreeSitterLua",
+            name: "TreeSitterScenery",
             dependencies: [],
             path: ".",
             sources: [
                 "src/parser.c",
-                "src/scanner.c",
+                // NOTE: if your language has an external scanner, add it here.
             ],
             resources: [
                 .copy("queries")
@@ -25,12 +25,12 @@ let package = Package(
             cSettings: [.headerSearchPath("src")]
         ),
         .testTarget(
-            name: "TreeSitterLuaTests",
+            name: "TreeSitterSceneryTests",
             dependencies: [
                 "SwiftTreeSitter",
-                "TreeSitterLua",
+                "TreeSitterScenery",
             ],
-            path: "bindings/swift/TreeSitterLuaTests"
+            path: "bindings/swift/TreeSitterSceneryTests"
         )
     ],
     cLanguageStandard: .c11

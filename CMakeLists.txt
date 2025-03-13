@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(tree-sitter-lua
-        VERSION "0.3.0"
-        DESCRIPTION "Lua grammar for tree-sitter"
-        HOMEPAGE_URL "https://github.com/tree-sitter-grammars/tree-sitter-lua"
+project(tree-sitter-scenery
+        VERSION "0.1.0"
+        DESCRIPTION "Scenery lua"
+        HOMEPAGE_URL "https://github.com/pandaloop0/tree-sitter-scenery"
         LANGUAGES C)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
@@ -24,32 +24,35 @@ add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c"
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
                    COMMENT "Generating parser.c")
 
-add_library(tree-sitter-lua src/parser.c src/scanner.c)
-target_include_directories(tree-sitter-lua PRIVATE src)
+add_library(tree-sitter-scenery src/parser.c)
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.c)
+  target_sources(tree-sitter-scenery PRIVATE src/scanner.c)
+endif()
+target_include_directories(tree-sitter-scenery PRIVATE src)
 
-target_compile_definitions(tree-sitter-lua PRIVATE
+target_compile_definitions(tree-sitter-scenery PRIVATE
                            $<$<BOOL:${TREE_SITTER_REUSE_ALLOCATOR}>:TREE_SITTER_REUSE_ALLOCATOR>
                            $<$<CONFIG:Debug>:TREE_SITTER_DEBUG>)
 
-set_target_properties(tree-sitter-lua
+set_target_properties(tree-sitter-scenery
                       PROPERTIES
                       C_STANDARD 11
                       POSITION_INDEPENDENT_CODE ON
                       SOVERSION "${TREE_SITTER_ABI_VERSION}.${PROJECT_VERSION_MAJOR}"
                       DEFINE_SYMBOL "")
 
-configure_file(bindings/c/tree-sitter-lua.pc.in
-               "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-lua.pc" @ONLY)
+configure_file(bindings/c/tree-sitter-scenery.pc.in
+               "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-scenery.pc" @ONLY)
 
 include(GNUInstallDirs)
 
-install(FILES bindings/c/tree-sitter-lua.h
+install(FILES bindings/c/tree-sitter-scenery.h
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/tree_sitter")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-lua.pc"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-scenery.pc"
         DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig")
-install(TARGETS tree-sitter-lua
+install(TARGETS tree-sitter-scenery
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 
-add_custom_target(test "${TREE_SITTER_CLI}" test
+add_custom_target(ts-test "${TREE_SITTER_CLI}" test
                   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
                   COMMENT "tree-sitter test")

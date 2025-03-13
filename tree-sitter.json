@@ -1,13 +1,14 @@
 {
   "grammars": [
     {
-      "name": "lua",
-      "path": ".",
-      "scope": "source.lua",
+      "name": "scenery",
+      "camelcase": "Scenery",
+      "scope": "source.scenery",
       "file-types": [
-        "lua"
+        ".scenery",
+        ".sce"
       ],
-      "injection-regex": "^lua$",
+      "injection-regex": "^scenery$",
       "highlights": "queries/highlights.scm",
       "injections": "queries/injections.scm",
       "locals": "queries/locals.scm",
@@ -15,17 +16,26 @@
     }
   ],
   "metadata": {
-    "version": "0.3.0",
+    "version": "0.1.0",
     "license": "MIT",
+    "description": "Scenery lua",
     "authors": [
       {
-        "name": "Munif Tanjim",
-        "email": "hello@muniftanjim.dev",
-        "url": "https://muniftanjim.dev"
+        "name": "Pandaloop",
+        "email": "hassan@pandaloop.de",
+        "url": "https://pandaloop.de/"
       }
     ],
     "links": {
-      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-lua"
+      "repository": "https://github.com/pandaloop0/tree-sitter-scenery"
     }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
   }
 }

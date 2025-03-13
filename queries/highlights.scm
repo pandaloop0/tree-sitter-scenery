@@ -1,11 +1,10 @@
 ;; Keywords
 
-"return" @keyword.return
+"retfn" @keyword.return
 
 [
  "goto"
- "in"
- "local"
+ "let"
 ] @keyword
 
 (label_statement) @label
@@ -15,70 +14,47 @@
 (do_statement
 [
   "do"
-  "end"
 ] @keyword)
 
 (while_statement
 [
   "while"
   "do"
-  "end"
-] @repeat)
+] @keyword)
 
 (repeat_statement
 [
   "repeat"
   "until"
-] @repeat)
+] @keyword)
 
 (if_statement
 [
   "if"
-  "elseif"
   "else"
-  "then"
-  "end"
-] @conditional)
-
-(elseif_statement
-[
-  "elseif"
-  "then"
-  "end"
-] @conditional)
+] @keyword)
 
 (else_statement
 [
   "else"
-  "end"
-] @conditional)
+] @keyword)
 
 (for_statement
 [
   "for"
-  "do"
-  "end"
-] @repeat)
+] @keyword)
 
 (function_declaration
 [
-  "function"
-  "end"
+  "fn"
 ] @keyword.function)
 
 (function_definition
 [
-  "function"
-  "end"
+  "fn"
 ] @keyword.function)
 
 ;; Operators
-
-[
- "and"
- "not"
- "or"
-] @keyword.operator
 
 [
   "+"
@@ -89,18 +65,19 @@
   "^"
   "#"
   "=="
-  "~="
+  "!="
   "<="
   ">="
   "<"
   ">"
   "="
   "&"
+  "&&"
+  "||"
   "~"
   "|"
   "<<"
   ">>"
-  "//"
   ".."
 ] @operator
 
@@ -153,9 +130,9 @@
 
 ;; Tables
 
-(field name: (identifier) @field)
+(field name: (identifier) @variable)
 
-(dot_index_expression field: (identifier) @field)
+(dot_index_expression field: (identifier) @variable)
 
 (table_constructor
 [
@@ -165,7 +142,7 @@
 
 ;; Functions
 
-(parameters (identifier) @parameter)
+(parameters (identifier) @variable.parameter)
 
 (function_declaration
   name: [
@@ -188,11 +165,6 @@
   (expression_list .
     value: (function_definition)))
 
-(table_constructor
-  (field
-    name: (identifier) @function
-    value: (function_definition)))
-
 (function_call
   name: [
     (identifier) @function.call
@@ -201,6 +173,11 @@
     (method_index_expression
       method: (identifier) @method.call)
   ])
+
+(table_constructor
+  (field
+    name: (identifier) @variable
+    value: (function_definition)))
 
 (function_call
   (identifier) @function.builtin
@@ -213,11 +190,13 @@
 
 ;; Others
 
+"//" @comment
+
 (comment) @comment
 
 (hash_bang_line) @preproc
 
-(number) @number
+(number) @constant.builtin
 
 (string) @string
 
