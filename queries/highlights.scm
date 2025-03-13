@@ -103,8 +103,6 @@
 
 ;; Variables
 
-(identifier) @variable
-
 ((identifier) @variable.builtin
  (#eq? @variable.builtin "self"))
 
@@ -126,7 +124,7 @@
 [
   (false)
   (true)
-] @boolean
+] @constant.builtin.boolean
 
 ;; Tables
 
@@ -142,17 +140,20 @@
 
 ;; Functions
 
-(parameters (identifier) @variable.parameter)
+(parameters name: (identifier) @variable.parameter)
+
+; (function_declaration
+;   fn_name: [
+;     (identifier) @constant.builtin.boolean
+;     (dot_index_expression
+;       field: (identifier) @function)
+;   ])
 
 (function_declaration
-  name: [
-    (identifier) @function
-    (dot_index_expression
-      field: (identifier) @function)
-  ])
+  fn_name: (identifier) @function)
 
 (function_declaration
-  name: (method_index_expression
+  fn_name: (method_index_expression
     method: (identifier) @method))
 
 (assignment_statement
@@ -166,8 +167,8 @@
     value: (function_definition)))
 
 (function_call
-  name: [
-    (identifier) @function.call
+  fn_name: [
+    (identifier) @function
     (dot_index_expression
       field: (identifier) @function.call)
     (method_index_expression
@@ -179,15 +180,6 @@
     name: (identifier) @variable
     value: (function_definition)))
 
-(function_call
-  (identifier) @function.builtin
-  (#any-of? @function.builtin
-    ;; built-in functions in Lua 5.1
-    "assert" "collectgarbage" "dofile" "error" "getfenv" "getmetatable" "ipairs"
-    "load" "loadfile" "loadstring" "module" "next" "pairs" "pcall" "print"
-    "rawequal" "rawget" "rawset" "require" "select" "setfenv" "setmetatable"
-    "tonumber" "tostring" "type" "unpack" "xpcall"))
-
 ;; Others
 
 "//" @comment
@@ -196,8 +188,11 @@
 
 (hash_bang_line) @preproc
 
-(number) @constant.builtin
+(number) @constant.numeric.float
 
 (string) @string
 
 (escape_sequence) @string.escape
+
+(identifier) @variable
+

@@ -597,7 +597,7 @@
           }
         ]
       },
-      "name": {
+      "fn_name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -635,7 +635,7 @@
           }
         ]
       },
-      "name": {
+      "fn_name": {
         "multiple": false,
         "required": true,
         "types": [

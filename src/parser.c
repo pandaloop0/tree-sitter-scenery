@@ -11,7 +11,7 @@
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 68
 #define EXTERNAL_TOKEN_COUNT 6
-#define FIELD_COUNT 21
+#define FIELD_COUNT 22
 #define MAX_ALIAS_SEQUENCE_LENGTH 9
 #define PRODUCTION_ID_COUNT 61
 
@@ -972,17 +972,18 @@ enum ts_field_identifiers {
   field_content = 8,
   field_end = 9,
   field_field = 10,
-  field_left = 11,
-  field_local_declaration = 12,
-  field_method = 13,
-  field_name = 14,
-  field_operand = 15,
-  field_parameters = 16,
-  field_right = 17,
-  field_start = 18,
-  field_step = 19,
-  field_table = 20,
-  field_value = 21,
+  field_fn_name = 11,
+  field_left = 12,
+  field_local_declaration = 13,
+  field_method = 14,
+  field_name = 15,
+  field_operand = 16,
+  field_parameters = 17,
+  field_right = 18,
+  field_start = 19,
+  field_step = 20,
+  field_table = 21,
+  field_value = 22,
 };
 
 static const char * const ts_field_names[] = {
@@ -997,6 +998,7 @@ static const char * const ts_field_names[] = {
   [field_content] = "content",
   [field_end] = "end",
   [field_field] = "field",
+  [field_fn_name] = "fn_name",
   [field_left] = "left",
   [field_local_declaration] = "local_declaration",
   [field_method] = "method",
@@ -1078,8 +1080,8 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_local_declaration, 0, .inherited = true},
   [1] =
     {field_body, 0, .inherited = true},
+    {field_fn_name, 0, .inherited = true},
     {field_local_declaration, 0},
-    {field_name, 0, .inherited = true},
     {field_parameters, 0, .inherited = true},
   [5] =
     {field_local_declaration, 0},
@@ -1103,7 +1105,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_name, 1, .inherited = true},
   [18] =
     {field_arguments, 1},
-    {field_name, 0},
+    {field_fn_name, 0},
   [20] =
     {field_name, 0},
     {field_name, 1, .inherited = true},
@@ -1123,7 +1125,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_operand, 1},
   [31] =
     {field_body, 2, .inherited = true},
-    {field_name, 1},
+    {field_fn_name, 1},
     {field_parameters, 2, .inherited = true},
   [34] =
     {field_attribute, 1},
@@ -1161,7 +1163,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_name, 2, .inherited = true},
   [55] =
     {field_body, 3, .inherited = true},
-    {field_name, 2},
+    {field_fn_name, 2},
     {field_parameters, 3, .inherited = true},
   [58] =
     {field_attribute, 1},

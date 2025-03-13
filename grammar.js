@@ -229,10 +229,10 @@ module.exports = grammar({
       ),
     // function funcname funcbody
     function_declaration: ($) =>
-      seq('fn', field('name', $._function_name), $._function_body),
+      seq('fn', field('fn_name', $._function_name), $._function_body),
     // local function Name funcbody
     _local_function_declaration: ($) =>
-      seq('let', 'fn', field('name', $.identifier), $._function_body),
+      seq('let', 'fn', field('fn_name', $.identifier), $._function_body),
     // funcname ::= Name {'.' Name} [':' Name]
     _function_name: ($) =>
       choice(
@@ -461,7 +461,7 @@ module.exports = grammar({
     // functioncall ::=  prefixexp args | prefixexp ':' Name args
     function_call: ($) =>
       seq(
-        field('name', choice($._prefix_expression, $.method_index_expression)),
+        field('fn_name', choice($._prefix_expression, $.method_index_expression)),
         field('arguments', $.arguments)
       ),
     // prefixexp ':' Name
